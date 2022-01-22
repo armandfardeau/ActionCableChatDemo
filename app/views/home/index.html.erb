@@ -12,8 +12,9 @@
 
 <div data-controller="message">
   <label>
-    <h1>Message</h1>
-    <h2><%= @username %></h2>
+    <h2>Message</h2>
+    <h3 data-message-target="room"></h3>
+    <h4><%= @username %></h4>
     <select data-action="change->message#drowdownChange">
       <option value="0">Room 0</option>
       <option value="1">Room 1</option>

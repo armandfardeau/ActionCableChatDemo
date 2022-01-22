@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 import {createConsumer} from "@rails/actioncable"
 
 export default class extends Controller {
-    static targets = ["content"]
+    static targets = ["content", "room"]
 
     connect() {
         this.subscribe(this.room);
@@ -11,6 +11,7 @@ export default class extends Controller {
     get messageList() {
         return document.getElementById("message-list")
     }
+
 
     clearMessages() {
         this.messageList.innerHTML = "";
@@ -33,13 +34,13 @@ export default class extends Controller {
     }
 
     afterSubscriptionChange() {
+        window.history.replaceState(null, null, `?room_id=${this.room}`);
+        this.roomTarget.textContent = `Room ${this.room}`;
         this.chat.received = this.addMessage.bind(this);
     }
 
     subscribe(room = "0") {
         this.beforeSubscriptionChange();
-
-        window.history.replaceState(null, null, `?room_id=${room}`);
 
         this.room = room;
         this.chat = createConsumer().subscriptions.create({channel: "ChatChannel", room});
