@@ -1,0 +1,29 @@
+<h1>Public chat</h1>
+<hr/>
+
+<div>
+  <ul id="message-list">
+    <% @messages.each do |message| %>
+      <li><%= "sent by: #{message.sent_by} #{message.text}" %></li>
+    <% end %>
+  </ul>
+</div>
+<hr/>
+
+<div data-controller="message">
+  <label>
+    <h1>Message</h1>
+    <h2><%= @username %></h2>
+    <select data-action="change->message#drowdownChange">
+      <option value="0">Room 0</option>
+      <option value="1">Room 1</option>
+      <option value="2">Room 2</option>
+      <option value="3">Room 3</option>
+      <option value="4">Room 4</option>
+      <option value="5">Room 5</option>
+    </select>
+    <br/>
+    <textarea data-message-target="content" rows="3"></textarea>
+  </label><br/>
+  <button data-action="click->message#send">Send</button>
+</div>
