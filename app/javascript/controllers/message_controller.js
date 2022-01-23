@@ -13,7 +13,7 @@ export default class extends Controller {
         return document.getElementById("message-list")
     }
 
-    get template(){
+    get template() {
         return document.getElementById("message-template")
     }
 
@@ -26,10 +26,18 @@ export default class extends Controller {
         let message = clone.querySelectorAll("p")[0];
         let author = clone.querySelectorAll("span")[0];
         let listElement = clone.querySelectorAll("li")[0];
+        let containerElement = clone.querySelectorAll("div")[0];
 
         message.innerText = data.text;
         author.innerText = data.sent_by;
-        listElement.classList.add(data.sent_by == this.user ? listElement.dataset.sentBySelf : listElement.dataset.sentByOther);
+
+        if (data.sent_by === this.user) {
+            listElement.classList.add(listElement.dataset.sentBySelf);
+            containerElement.classList.add(containerElement.dataset.sentBySelf);
+        } else {
+            listElement.classList.add(listElement.dataset.sentByOther);
+            containerElement.classList.add(containerElement.dataset.sentByOther);
+        }
 
         this.messageList.appendChild(clone);
     }

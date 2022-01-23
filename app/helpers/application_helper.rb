@@ -7,7 +7,10 @@ module ApplicationHelper
         css_class: "italic font-bold text-xs"
       ),
       container: OpenStruct.new(
-        css_class: "px-4 py-2 bg-gray-200 rounded-lg"
+        css_class: "px-4 py-2 bg-gray-200 rounded-lg",
+        data: OpenStruct.new(
+          sent_by_self: "bg-green-200",
+          sent_by_other: "bg-blue-200",)
       ),
       li: OpenStruct.new(
         css_class: "flex flex-col mt-5",

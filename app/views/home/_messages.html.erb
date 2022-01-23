@@ -2,7 +2,9 @@
   <li class="<%= style.li.css_class %>"
       data-sent-by-self="<%= style.li.data.sent_by_self %>"
       data-sent-by-other="<%= style.li.data.sent_by_other %>">
-    <div class="<%= style.container.css_class %>">
+    <div class="<%= style.container.css_class %>"
+         data-sent-by-self="<%= style.container.data.sent_by_self %>"
+         data-sent-by-other="<%= style.container.data.sent_by_other %>">
       <p></p>
       <span class="<%= style.span.css_class %>"></span>
     </div>
@@ -10,7 +12,7 @@
 </template>
 <% messages.each do |message| %>
   <li class="<%= style.li.css_class %> <%= message.sent_by == @username ? style.li.data.sent_by_self : style.li.data.sent_by_other %>">
-    <div class="<%= style.container.css_class %>">
+    <div class="<%= style.container.css_class %> <%= message.sent_by == @username ? style.container.data.sent_by_self : style.container.data.sent_by_other %>">
       <p><%= message.text %></p>
       <span class="<%= style.span.css_class %>"><%= message.sent_by %></span>
     </div>
