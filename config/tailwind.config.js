@@ -35,8 +35,8 @@ module.exports = {
                 },
             },
             animation: {
-                'pop_in_right': 'pop_in_right 1s ease-in-out',
-                'pop_in_left': 'pop_in_left 1s ease-in-out',
+                'pop_in_right': 'pop_in_right 0.5s ease-in-out',
+                'pop_in_left': 'pop_in_left 0.5s ease-in-out',
             },
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],

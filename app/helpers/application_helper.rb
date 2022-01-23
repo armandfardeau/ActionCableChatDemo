@@ -9,14 +9,16 @@ module ApplicationHelper
       container: OpenStruct.new(
         css_class: "px-4 py-2 bg-gray-200 rounded-lg",
         data: OpenStruct.new(
-          sent_by_self: "bg-green-200",
-          sent_by_other: "bg-blue-200",)
+          sent_by_self: "bg-green-200 animate-pop_in_left",
+          sent_by_other: "bg-blue-200 animate-pop_in_right"
+        )
       ),
       li: OpenStruct.new(
         css_class: "flex flex-col mt-5",
         data: OpenStruct.new(
           sent_by_self: "items-start text-left",
-          sent_by_other: "items-end text-right",)
+          sent_by_other: "items-end text-right"
+        )
       )
     )
   end
