@@ -3,15 +3,7 @@
 
 <div>
   <ul id="message-list" class="flex flex-col">
-    <%= render partial: "home/messages", locals: {
-      messages: @messages,
-      style: {
-        li_class: "flex flex-col mt-5",
-        sent_by_self: "items-start",
-        sent_by_other: "items-end",
-        span_class: "italic font-bold text-xs"
-      }
-    } %>
+    <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
   </ul>
 </div>
 <hr/>
