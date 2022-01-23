@@ -2,11 +2,12 @@ import {Controller} from "@hotwired/stimulus"
 import {createConsumer} from "@rails/actioncable"
 
 export default class extends Controller {
-    static targets = ["content", "room", "user"]
+    static targets = ["content", "room", "user", "send"]
 
     connect() {
         this.subscribe(this.room);
         this.user = this.userTarget.textContent
+        this.scrollToBottom("auto");
     }
 
     get messageList() {
@@ -15,6 +16,18 @@ export default class extends Controller {
 
     get template() {
         return document.getElementById("message-template")
+    }
+
+    get messageEmpty() {
+        return !this.contentTarget.value.trim();
+    }
+
+    toggleButton() {
+        this.sendTarget.disabled = this.messageEmpty;
+    }
+
+    scrollToBottom(behavior = "smooth") {
+        this.messageList.scrollIntoView({behavior, block: "end"});
     }
 
     addToClassFromDataSet(element, dataset_name) {
@@ -47,6 +60,7 @@ export default class extends Controller {
         }
 
         this.messageList.appendChild(clone);
+        this.scrollToBottom();
     }
 
     beforeSubscriptionChange() {
@@ -75,10 +89,15 @@ export default class extends Controller {
         this.subscribe(element.target.value);
     }
 
+    write() {
+        this.toggleButton();
+    }
+
     send() {
-        if (!this.contentTarget.value.trim()) return;
+        if(this.messageEmpty) return;
 
         this.chat.perform('send_message', {text: this.contentTarget.value})
         this.contentTarget.value = '';
+        this.toggleButton();
     }
 }

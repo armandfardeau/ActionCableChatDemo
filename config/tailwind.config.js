@@ -8,6 +8,10 @@ module.exports = {
     ],
     theme: {
         extend: {
+            container:{
+                center: true,
+                padding: '1rem'
+            },
             keyframes: {
                 pop_in_right: {
                     '0%': {
