@@ -1,0 +1,14 @@
+<template id="message-template">
+  <li class="<%= style[:li_class] %>"
+      data-sent-by-self="<%= style[:sent_by_self] %>"
+      data-sent-by-other="<%= style[:sent_by_other] %>">
+    <p></p>
+    <span class="<%= style[:span_class] %>"></span>
+  </li>
+</template>
+<% messages.each do |message| %>
+  <li class="<%= style[:li_class] %> <%= message.sent_by == @username ? style[:sent_by_self] : style[:sent_by_other] %>">
+    <p><%= message.text %></p>
+    <span class="<%= style[:span_class] %>"><%= message.sent_by %></span>
+  </li>
+<% end %>

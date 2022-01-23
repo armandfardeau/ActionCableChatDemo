@@ -2,19 +2,16 @@
 <hr/>
 
 <div>
-  <template id="message-template">
-    <li class="flex flex-col mt-5" data-sent-by-self="items-start" data-sent-by-other="items-end">
-      <p></p>
-      <span class="italic"></span>
-    </li>
-  </template>
   <ul id="message-list" class="flex flex-col">
-    <% @messages.each do |message| %>
-      <li class="flex flex-col mt-5 <%= message.sent_by == @username ? "items-start" : "items-end" %>">
-        <p><%= message.text %></p>
-        <span class="italic"><%= message.sent_by %></span>
-      </li>
-    <% end %>
+    <%= render partial: "home/messages", locals: {
+      messages: @messages,
+      style: {
+        li_class: "flex flex-col mt-5",
+        sent_by_self: "items-start",
+        sent_by_other: "items-end",
+        span_class: "italic font-bold text-xs"
+      }
+    } %>
   </ul>
 </div>
 <hr/>
