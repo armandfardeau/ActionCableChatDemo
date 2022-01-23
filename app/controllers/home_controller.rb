@@ -7,8 +7,6 @@ class HomeController < ApplicationController
   private
 
   def assign_username
-    user_id = REDIS.incr('user_count')
-
-    "User_#{user_id}"
+    "User_#{User.create.id}"
   end
 end
