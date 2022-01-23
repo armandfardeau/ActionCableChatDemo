@@ -6,6 +6,9 @@ module ApplicationHelper
       span: OpenStruct.new(
         css_class: "italic font-bold text-xs"
       ),
+      container: OpenStruct.new(
+        css_class: "px-4 py-2 bg-gray-200 rounded-lg"
+      ),
       li: OpenStruct.new(
         css_class: "flex flex-col mt-5",
         data: OpenStruct.new(
