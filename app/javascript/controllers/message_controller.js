@@ -17,6 +17,13 @@ export default class extends Controller {
         return document.getElementById("message-template")
     }
 
+    addToClassFromDataSet(element, dataset_name) {
+        element.dataset[dataset_name].split(" ").forEach((item) => {
+                element.classList.add(item)
+            }
+        )
+    }
+
     clearMessages() {
         this.messageList.innerHTML = "";
     }
@@ -32,11 +39,11 @@ export default class extends Controller {
         author.innerText = data.sent_by;
 
         if (data.sent_by === this.user) {
-            listElement.classList.add(listElement.dataset.sentBySelf);
-            containerElement.classList.add(containerElement.dataset.sentBySelf);
+            this.addToClassFromDataSet(listElement, "sentBySelf")
+            this.addToClassFromDataSet(containerElement, "sentBySelf")
         } else {
-            listElement.classList.add(listElement.dataset.sentByOther);
-            containerElement.classList.add(containerElement.dataset.sentByOther);
+            this.addToClassFromDataSet(listElement, "sentByOther")
+            this.addToClassFromDataSet(containerElement, "sentByOther")
         }
 
         this.messageList.appendChild(clone);

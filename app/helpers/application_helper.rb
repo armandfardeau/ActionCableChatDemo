@@ -15,8 +15,8 @@ module ApplicationHelper
       li: OpenStruct.new(
         css_class: "flex flex-col mt-5",
         data: OpenStruct.new(
-          sent_by_self: "items-start",
-          sent_by_other: "items-end",)
+          sent_by_self: "items-start text-left",
+          sent_by_other: "items-end text-right",)
       )
     )
   end
