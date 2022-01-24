@@ -51,7 +51,6 @@ export default class extends Controller {
                     this.addMessage({sent_by: message.sent_by, text: message.text})
                 })
             })
-            .catch(error => console.log(error));
     }
 
     addMessage(data) {
