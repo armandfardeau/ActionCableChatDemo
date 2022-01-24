@@ -4,6 +4,7 @@
 
 <div class="flex flex-col justify-center items-center space-y-4">
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {
+    data: { turbo: false },
     class: "flex flex-col justify-content align-items space-y-1",
     method: :post
   }) do |f| %>
