@@ -1,6 +1,10 @@
 require "ostruct"
 
 module ApplicationHelper
+  def hidden_icon(icon_name)
+    @color_scheme == icon_name ? "hidden" : ""
+  end
+
   def message_style
     @message_style ||= OpenStruct.new(
       span: OpenStruct.new(

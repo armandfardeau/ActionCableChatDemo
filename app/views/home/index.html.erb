@@ -1,12 +1,15 @@
 <div class="flex flex-col h-screen">
-  <h1 class="text-3xl font-bold container max-w-screen-lg py-2">Public chat</h1>
+  <div class="flex container max-w-screen-lg justify-between items-center">
+    <h1 class="dark:text-white text-3xl font-bold py-2">Public chat</h1>
+    <%= render partial: "layouts/preferences" %>
+  </div>
   <div class="flex-grow overflow-scroll">
     <ul id="message-list" class="flex flex-col mb-4 container max-w-screen-lg">
       <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
     </ul>
   </div>
 
-  <form action="submit" data-controller="message" class="pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
+  <form action="submit" data-controller="message" class="dark:text-white pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
     <div class="font-bold flex justify-between py-2 items-center">
       <h3 data-message-target="room"></h3>
       <h4 data-message-target="user"><%= @username %></h4>
@@ -14,7 +17,7 @@
     <div>
       <label for="room">
       </label>
-      <select id="room" class="rounded-lg bg-gray-50" data-action="change->message#drowdownChange">
+      <select id="room" class="dark:bg-slate-900 dark:text-white rounded-lg bg-gray-50" data-action="change->message#drowdownChange">
         <option value="0">Room 0</option>
         <option value="1">Room 1</option>
         <option value="2">Room 2</option>
@@ -25,7 +28,7 @@
     </div>
     <div>
       <label for="message">
-        <input id="message" placeholder="Type your message..." class="bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full" data-action="keydown->message#write" data-message-target="content"/>
+        <input id="message" placeholder="Type your message..." class="dark:text-white dark:bg-slate-900 dark:text-white dark:border dark:border-solid bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full" data-action="keydown->message#write" data-message-target="content"/>
       </label>
     </div>
     <div class="flex item-center justify-center">
