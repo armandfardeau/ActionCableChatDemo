@@ -1,6 +1,10 @@
 require "ostruct"
 
 module ApplicationHelper
+  def sent_by_self?(message)
+    message.sent_by == @nickname
+  end
+
   def hidden_icon(icon_name)
     @color_scheme == icon_name ? "hidden" : ""
   end

@@ -6,9 +6,11 @@
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "flex flex-col justify-content align-items space-y-1" }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
+    <%= f.label :nickname, class: "dark:text-white" %>
+    <%= f.text_field :nickname, class: "dark:text-white dark:bg-slate-900" %>
+
     <%= f.label :email, class: "dark:text-white" %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "dark:text-white dark:bg-slate-900" %>
-
 
     <%= f.label :password, class: "dark:text-white" %>
     <% if @minimum_password_length %>

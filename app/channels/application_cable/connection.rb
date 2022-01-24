@@ -9,7 +9,7 @@ module ApplicationCable
     private
 
     def verify_user
-      cookies.signed[:current_username] or reject_unauthorized_connection
+      env['warden']&.user&.nickname or reject_unauthorized_connection
     end
   end
 end
