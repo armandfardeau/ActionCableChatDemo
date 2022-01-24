@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_room
     @room = begin
-              Room.includes(:messages).find(params[:id])
+              Room.includes(messages: :user).find(params[:id])
             rescue ActiveRecord::RecordNotFound
               OpenStruct.new(id: nil, messages: [])
             end

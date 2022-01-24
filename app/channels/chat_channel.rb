@@ -8,10 +8,10 @@ class ChatChannel < ApplicationCable::Channel
   end
 
   def send_message(data)
-    message_params = { "sent_by" => current_user }.merge(data)
+    message_params = { user: current_user, "sent_by" => current_user.nickname }.merge(data)
 
-    ActionCable.server.broadcast(channel, message_params)
-    SaveMessageJob.perform_later(params[:room], message_params.except("action"))
+    ActionCable.server.broadcast(channel, message_params.except(:user))
+    SaveMessageJob.perform_later(params[:room], message_params.except("action", "sent_by"))
   end
 
   private
