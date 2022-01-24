@@ -41,6 +41,19 @@ export default class extends Controller {
         this.messageList.innerHTML = "";
     }
 
+    createExistingMessages(room_id) {
+        fetch(`/rooms/${room_id}`)
+            .then(response => response.json())
+            .then(room => {
+                if (!room.messages) return;
+
+                room.messages.forEach(message => {
+                    this.addMessage({sent_by: message.sent_by, text: message.text})
+                })
+            })
+            .catch(error => console.log(error));
+    }
+
     addMessage(data) {
         let clone = this.template.content.cloneNode(true);
         let message = clone.querySelectorAll("p")[0];
@@ -87,6 +100,7 @@ export default class extends Controller {
 
     drowdownChange(element) {
         this.subscribe(element.target.value);
+        this.createExistingMessages(element.target.value);
     }
 
     write() {
@@ -94,7 +108,7 @@ export default class extends Controller {
     }
 
     send() {
-        if(this.messageEmpty) return;
+        if (this.messageEmpty) return;
 
         this.chat.perform('send_message', {text: this.contentTarget.value})
         this.contentTarget.value = '';
