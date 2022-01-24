@@ -2,7 +2,7 @@ require "ostruct"
 
 module ApplicationHelper
   def sent_by_self?(message)
-    message.sent_by == @nickname
+    message.sent_by == current_user.nickname
   end
 
   def hidden_icon(icon_name)
@@ -15,10 +15,10 @@ module ApplicationHelper
         css_class: "italic font-bold text-xs"
       ),
       container: OpenStruct.new(
-        css_class: "px-4 py-2 bg-gray-200 rounded-lg",
+        css_class: "px-4 py-2 rounded-lg",
         data: OpenStruct.new(
-          sent_by_self: "bg-green-200 animate-pop_in_left",
-          sent_by_other: "bg-blue-200 animate-pop_in_right"
+          sent_by_self: "animate-pop_in_left",
+          sent_by_other: "animate-pop_in_right"
         )
       ),
       li: OpenStruct.new(

@@ -13,7 +13,7 @@
 <ul id="message-list" class="flex flex-col mb-4 container max-w-screen-lg">
   <% messages.each do |message| %>
     <li class="<%= style.li.css_class %> <%= sent_by_self?(message) ? style.li.data.sent_by_self : style.li.data.sent_by_other %>">
-      <div class="<%= style.container.css_class %> <%= sent_by_self?(message) ? style.container.data.sent_by_self : style.container.data.sent_by_other %>">
+      <div class="<%= "bg-#{message.user.color}" %> <%= style.container.css_class %> <%= sent_by_self?(message) ? style.container.data.sent_by_self : style.container.data.sent_by_other %>">
         <p><%= message.text %></p>
         <span class="<%= style.span.css_class %>"><%= message.sent_by %></span>
       </div>

@@ -7,9 +7,14 @@ module.exports = {
         './app/javascript/**/*.js',
         './app/views/**/*'
     ],
+    safelist: [
+        {
+            pattern: /^bg-.*/
+        },
+    ],
     theme: {
         extend: {
-            container:{
+            container: {
                 center: true,
                 padding: '1rem'
             },
@@ -20,7 +25,7 @@ module.exports = {
                         'transform-origin': 'right',
                         'opacity': '0'
                     },
-                    '100%':{
+                    '100%': {
                         'transform': 'scale(1)',
                         'opacity': '1',
                         'transform-origin': 'right'
@@ -32,7 +37,7 @@ module.exports = {
                         'transform-origin': 'left',
                         'opacity': '0'
                     },
-                    '100%':{
+                    '100%': {
                         'transform': 'scale(1)',
                         'opacity': '1',
                         'transform-origin': 'left'

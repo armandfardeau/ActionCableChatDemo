@@ -2,8 +2,7 @@ class HomeController < ApplicationController
   helper_method :distinct_rooms
 
   def index
-    @nickname = current_user.nickname
-    @messages = Message.where(room_id: params[:room_id])
+    @messages = Message.where(room_id: params[:room_id]).includes(:user)
   end
 
   private

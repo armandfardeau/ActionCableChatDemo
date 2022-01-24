@@ -8,7 +8,7 @@
 <form action="submit" data-controller="message" class="dark:text-white pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
   <div class="font-bold flex justify-between py-2 items-center">
     <h3 data-message-target="room"></h3>
-    <h4 data-message-target="user"><%= @nickname %></h4>
+    <h4 data-message-target="user"><%= current_user.nickname %></h4>
   </div>
   <div>
     <label for="room">

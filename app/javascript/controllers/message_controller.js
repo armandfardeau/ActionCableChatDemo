@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 import {createConsumer} from "@rails/actioncable"
 
 export default class extends Controller {
-    static targets = ["content", "room", "user", "send", "select"]
+    static targets = ["content", "room", "user", "send", "select", "color"]
 
     connect() {
         this.subscribe(this.room);
@@ -48,7 +48,7 @@ export default class extends Controller {
                 if (!room.messages) return;
 
                 room.messages.forEach(message => {
-                    this.addMessage({sent_by: message.sent_by, text: message.text})
+                    this.addMessage({color: message.color, sent_by: message.sent_by, text: message.text})
                 })
             })
     }
@@ -62,6 +62,8 @@ export default class extends Controller {
 
         message.innerText = data.text;
         author.innerText = data.sent_by;
+
+        containerElement.classList.add(`bg-${data.color}`)
 
         if (data.sent_by === this.user) {
             this.addToClassFromDataSet(listElement, "sentBySelf")
