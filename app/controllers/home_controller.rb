@@ -13,6 +13,8 @@ class HomeController < ApplicationController
   end
 
   def distinct_rooms
+    return [0, 1] if Room.count.zero?
+
     Room.pluck(:id) << Room.count
   end
 end
