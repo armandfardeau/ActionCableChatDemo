@@ -1,1 +1,1 @@
-json.extract!(@room, :id, :created_at, :updated_at, :messages)
+json.extract!(@room, :id, :messages)

@@ -6,13 +6,18 @@ class RoomsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_room
-      @room = Room.includes(:messages).find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def room_params
-      params.fetch(:room, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @room = begin
+              Room.includes(:messages).find(params[:id])
+            rescue ActiveRecord::RecordNotFound
+              OpenStruct.new(id: nil, messages: [])
+            end
+  end
+
+  # Only allow a list of trusted parameters through.
+  def room_params
+    params.fetch(:room, {})
+  end
 end
