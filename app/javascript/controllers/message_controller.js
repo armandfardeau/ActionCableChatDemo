@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 import {createConsumer} from "@rails/actioncable"
 
 export default class extends Controller {
-    static targets = ["content", "room", "user", "send"]
+    static targets = ["content", "room", "user", "send", "select"]
 
     connect() {
         this.subscribe(this.room);
@@ -97,6 +97,17 @@ export default class extends Controller {
         this.afterSubscriptionChange();
     }
 
+    appendDropdown() {
+        if (this.selectTarget.children.item(this.selectTarget.children.length - 1).value !== this.room) return;
+
+        let new_room_id = parseInt(this.room) + 1;
+        let dropdown = document.createElement("option");
+        dropdown.value = new_room_id
+        dropdown.innerText = `${this.selectTarget.dataset.selectText} ${new_room_id}`;
+
+        this.selectTarget.appendChild(dropdown);
+    }
+
     drowdownChange(element) {
         this.subscribe(element.target.value);
         this.createExistingMessages(element.target.value);
@@ -112,5 +123,7 @@ export default class extends Controller {
         this.chat.perform('send_message', {text: this.contentTarget.value})
         this.contentTarget.value = '';
         this.toggleButton();
+
+        this.appendDropdown();
     }
 }
