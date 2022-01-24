@@ -4,9 +4,7 @@
     <%= render partial: "layouts/preferences" %>
   </div>
   <div class="flex-grow overflow-scroll">
-    <ul id="message-list" class="flex flex-col mb-4 container max-w-screen-lg">
-      <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
-    </ul>
+    <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
   </div>
 
   <form action="submit" data-controller="message" class="dark:text-white pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
@@ -28,11 +26,16 @@
     </div>
     <div>
       <label for="message">
-        <input id="message" placeholder="Type your message..." class="dark:text-white dark:bg-slate-900 dark:text-white dark:border dark:border-solid bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full" data-action="keydown->message#write" data-message-target="content"/>
+        <input id="message" placeholder="Type your message..."
+               class="dark:text-white dark:bg-slate-900 dark:text-white dark:border dark:border-solid bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full"
+               data-action="keydown->message#write"
+               data-message-target="content"/>
       </label>
     </div>
     <div class="flex item-center justify-center">
-      <button type="submit" data-message-target="send" class="text-white bg-sky-500 disabled:bg-sky-500 hover:bg-sky-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border border-sky-500 px-6 py-3 " disabled data-action="click->message#send">Send</button>
+      <button type="submit" data-message-target="send" class="text-white bg-sky-500 disabled:bg-sky-500 hover:bg-sky-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border border-sky-500 px-6 py-3 "
+              disabled data-action="click->message#send">Send
+      </button>
     </div>
   </form>
 </div>
