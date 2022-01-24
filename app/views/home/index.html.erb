@@ -1,42 +1,39 @@
-<div class="flex flex-col h-screen">
-  <div class="flex container max-w-screen-lg justify-between items-center">
-    <h1 class="dark:text-white text-3xl font-bold py-2">Public chat</h1>
-    <%= render partial: "layouts/preferences" %>
-  </div>
-  <div class="flex-grow overflow-scroll">
-    <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
-  </div>
-
-  <form action="submit" data-controller="message" class="dark:text-white pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
-    <div class="font-bold flex justify-between py-2 items-center">
-      <h3 data-message-target="room"></h3>
-      <h4 data-message-target="user"><%= @username %></h4>
-    </div>
-    <div>
-      <label for="room">
-      </label>
-      <select id="room"
-              data-message-target="select"
-              data-select-text="Room"
-              class="dark:bg-slate-900 dark:text-white rounded-lg bg-gray-50"
-              data-action="change->message#drowdownChange">
-        <% distinct_rooms.each do |id| %>
-          <option value="<%= id %>">Room <%= id %></option>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <label for="message">
-        <input id="message" placeholder="Type your message..."
-               class="dark:text-white dark:bg-slate-900 dark:text-white dark:border dark:border-solid bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full"
-               data-action="keydown->message#write"
-               data-message-target="content"/>
-      </label>
-    </div>
-    <div class="flex item-center justify-center">
-      <button type="submit" data-message-target="send" class="text-white bg-sky-500 disabled:bg-sky-500 hover:bg-sky-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border border-sky-500 px-6 py-3 "
-              disabled data-action="click->message#send">Send
-      </button>
-    </div>
-  </form>
+<%= content_for :title do %>
+  Public chat
+<% end %>
+<div class="flex-grow overflow-scroll">
+  <%= render partial: "home/messages", locals: { messages: @messages, style: message_style } %>
 </div>
+
+<form action="submit" data-controller="message" class="dark:text-white pb-4 space-y-4 py-2 flex-shrink-0 container max-w-screen-lg">
+  <div class="font-bold flex justify-between py-2 items-center">
+    <h3 data-message-target="room"></h3>
+    <h4 data-message-target="user"><%= @username %></h4>
+  </div>
+  <div>
+    <label for="room">
+    </label>
+    <select id="room"
+            data-message-target="select"
+            data-select-text="Room"
+            class="dark:bg-slate-900 dark:text-white rounded-lg bg-gray-50"
+            data-action="change->message#drowdownChange">
+      <% distinct_rooms.each do |id| %>
+        <option value="<%= id %>">Room <%= id %></option>
+      <% end %>
+    </select>
+  </div>
+  <div>
+    <label for="message">
+      <input id="message" placeholder="Type your message..."
+             class="dark:text-white dark:bg-slate-900 dark:text-white dark:border dark:border-solid bg-gray-50 rounded-lg mt-1 px-4 py-10 w-full"
+             data-action="keydown->message#write"
+             data-message-target="content"/>
+    </label>
+  </div>
+  <div class="flex item-center justify-center">
+    <button type="submit" data-message-target="send" class="text-white bg-sky-500 disabled:bg-sky-500 hover:bg-sky-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg border border-sky-500 px-6 py-3"
+            disabled data-action="click->message#send">Send
+    </button>
+  </div>
+</form>
