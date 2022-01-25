@@ -5,7 +5,7 @@ class User < ApplicationRecord
   COLOR_ACCENTUATED_LIST = [50, 100, 200, 300, 400]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   validates :nickname, presence: true, uniqueness: true
 
